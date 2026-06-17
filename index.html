@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoshino Community Web</title>
+    <!-- Font Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome untuk Ikon TikTok, WhatsApp, dll -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- RESET & BASE STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 0;
+            overflow-x: hidden;
+            position: relative;
+            
+            /* BACKGROUND BARU: Gradasi Gelap Elegan Melingkar (Radial Gradient) */
+            background: radial-gradient(circle at 50% 15%, #1e1136 0%, #0d0b14 60%, #050408 100%);
+        }
+
+        /* EFEK TAMBAHAN: Cahaya Pendar Lembut di Latar Belakang */
+        body::before {
+            content: "";
+            position: absolute;
+            top: -10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, transparent 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 30px;
+            padding: 0 20px;
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .avatar-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+
+        .avatar-main {
+            width: 90px;
+            height: 90px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #a855f7, #121212);
+            border: 2px solid #a855f7;
+            object-fit: cover;
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            color: #bbbbbb;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+        }
+
+        /* --- BUTTONS --- */
+        .btn-container {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px); /* Efek kaca transparan */
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: rgba(168, 85, 247, 0.2);
+            border-color: #a855f7;
+            box-shadow: 0 0 10px rgba(168, 85, 247, 0.3);
+        }
+
+        /* --- FOTO TENGAH --- */
+        .middle-banner-container {
+            width: 100%;
+            max-width: 450px;
+            padding: 0 20px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .middle-banner {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border-radius: 24px;
+            object-fit: cover;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+        }
+
+        .banner-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+
+        .banner-desc {
+            color: #aaaaaa;
+            font-size: 0.9rem;
+        }
+
+        /* --- STATS SECTION --- */
+        .stats-section {
+            width: 100%;
+            max-width: 450px;
+            padding: 0 20px;
+            margin-bottom: 40px;
+        }
+
+        .stats-section h2 {
+            text-align: center;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .stats-box {
+            background-color: rgba(20, 15, 30, 0.6); /* Transparan gelap senada dengan background */
+            border: 1px solid rgba(168, 85, 247, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 15px 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
+
+        .stats-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            font-size: 0.95rem;
+        }
+
+        .stats-row:not(:last-child) {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .stats-count {
+            color: #d8b4fe; /* Warna ungu muda terang untuk angka */
+            font-weight: 600;
+        }
+
+        /* --- SLIDER (ADMIN SECTION) --- */
+        .admin-section {
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .admin-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .slider-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            gap: 20px;
+            padding: 10px 40px;
+            scrollbar-width: none;
+        }
+
+        .slider-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .admin-card {
+            flex: 0 0 260px;
+            background-color: rgba(25, 18, 40, 0.7);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 25px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            scroll-snap-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .admin-card:hover {
+            border-color: rgba(168, 85, 247, 0.5);
+        }
+
+        .admin-avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            object-fit: cover;
+            border: 2px solid rgba(168, 85, 247, 0.3);
+        }
+
+        .admin-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .admin-role {
+            font-size: 0.85rem;
+            color: #aaaaaa;
+            margin-bottom: 12px;
+        }
+
+        .admin-subtext {
+            font-size: 0.9rem;
+            color: #cccccc;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        /* --- SOSIAL MEDIA DI KARTU ADMIN --- */
+        .admin-socials {
+            display: flex;
+            gap: 12px;
+            margin-top: auto;
+        }
+
+        .social-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon.tiktok:hover {
+            background-color: #000000;
+            color: #00f2fe;
+            border-color: #fe0979;
+            box-shadow: 0 0 10px rgba(0, 242, 254, 0.6);
+        }
+
+        .social-icon.whatsapp:hover {
+            background-color: #25D366;
+            color: #ffffff;
+            border-color: #25D366;
+            box-shadow: 0 0 10px rgba(37, 211, 102, 0.6);
+        }
+
+        /* --- TOMBOL NAVIGASI SLIDER --- */
+        .nav-btn {
+            position: absolute;
+            top: 55%;
+            transform: translateY(-50%);
+            background-color: rgba(20, 15, 30, 0.8);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            z-index: 10;
+            transition: all 0.3s;
+        }
+
+        .nav-btn:hover {
+            background-color: #a855f7;
+            box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+        }
+
+        .prev-btn { left: 5px; }
+        .next-btn { right: 5px; }
+
+        footer {
+            margin-top: auto;
+            text-align: center;
+            color: #666666;
+            font-size: 0.8rem;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO SECTION -->
+    <div class="hero">
+        <div class="avatar-container">
+            <!-- Isi dengan link gambar logomu -->
+            <img class="avatar-main" src="https://i.postimg.cc/MTxkw8z9/1781698541969.jpg" alt="Hoshino Community">
+        </div>
+        <h1>Hoshino Community</h1>
+        <p>marga perkumpulan wibu halu</p>
+        
+        <div class="btn-container">
+            <a href="#" class="btn"><i class="fa-solid fa-compass"></i> Jelajahi</a>
+            <a href="#" class="btn"><i class="fa-solid fa-bell"></i> Info</a>
+            <a href="https://www.tiktok.com/@hoshinocommunity?_r=1&_t=ZS-97Hy8QSmksx" target="_blank" class="btn"><i class="fa-brands fa-tiktok"></i> TikTok</a>
+            <a href="https://chat.whatsapp.com/JbHtYpFFNePJlmArjHrLBt" target="_blank" class="btn"><i class="fa-brands fa-whatsapp"></i> WA Group</a>
+        </div>
+    </div>
+
+    <!-- FOTO BESAR DI TENGAH -->
+    <div class="middle-banner-container">
+        <!-- Isi dengan link gambar logo klan berukuran besar -->
+        <img class="middle-banner" src="https://via.placeholder.com/400/1e1136/ffffff?text=Hoshino+Community+Gen+1" alt="Hoshino Community Gen 1">
+        <div class="banner-title">Welcome to Hoshino Community </div>
+    </div>
+
+    <!-- STATS / JUMLAH MEMBER GEN 1 SECTION -->
+    <div class="stats-section">
+        <h2>Jumlah Member Hoshino</h2>
+        <div class="stats-box">
+            <div class="stats-row">
+                <span>Hoshino Family  1</span>
+                <span class="stats-count">48 member</span>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDER ADMIN SECTION -->
+    <div class="admin-section">
+        <h2>Admin & Owner</h2>
+        
+        <button class="nav-btn prev-btn" onclick="slide('left')">&#10094;</button>
+        <button class="nav-btn next-btn" onclick="slide('right')">&#10095;</button>
+
+        <div class="slider-container" id="slider">
+            
+            <!-- Kartu 1: Rynn -->
+            <div class="admin-card">
+                <img class="admin-avatar" src="https://i.postimg.cc/DfQ7NBdj/IMG-20260617-WA0035.jpg" alt="Rynn">
+                <div class="admin-name">Rynn</div>
+                <div class="admin-role">Selection member</div>
+                <div class="admin-subtext">Rynn ft HSN</div>
+                
+                <div class="admin-socials">
+                    <a href="https://www.tiktok.com/@rynnsensei7?_r=1&_t=ZS-97HvgcSnz2P" target="_blank" class="social-icon tiktok"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+
+            <!-- Kartu 2: Zeyn -->
+            <div class="admin-card">
+                <img class="admin-avatar" src="https://i.postimg.cc/V6x5FvwN/IMG-20260617-WA0034.jpg" alt="Zeyn">
+                <div class="admin-name">Zeyn</div>
+                <div class="admin-role">Collab & Selection</div>
+                <div class="admin-subtext">Zeyn ft HSN</div>
+                
+                <div class="admin-socials">
+                    <a href="https://www.tiktok.com/@drinzyyy_zynn?_r=1&_t=ZS-97Hw8eMn7sC" target="_blank" class="social-icon tiktok"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+
+            <!-- Kartu 3: Dyy -->
+            <div class="admin-card">
+                <img class="admin-avatar" src="https://i.postimg.cc/LXH11nHs/IMG-20260617-WA0031.jpg" alt="Dyy">
+                <div class="admin-name">Dyy</div>
+                <div class="admin-role">Selection Member</div>
+                <div class="admin-subtext">Dyy ft HSN</div>
+                
+                <div class="admin-socials">
+                    <a href="https://www.tiktok.com/@dyyfthsn?_r=1&_t=ZS-97Ht62yf1zI" class="social-icon tiktok"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+
+            <!-- Kartu 4: Yuka -->
+            <div class="admin-card">
+                <img class="admin-avatar" src="https://i.postimg.cc/N0ty35rv/IMG-20260617-WA0032.jpg" alt="Yuka">
+                <div class="admin-name">Yuka</div>
+                <div class="admin-role">Selection member</div>
+                <div class="admin-subtext">Yuka ft HSN</div>
+                
+                <div class="admin-socials">
+                    <a href="https://www.tiktok.com/@dyyfthsn?_r=1&_t=ZS-97Ht62yf1zI" class="social-icon tiktok"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+
+            <!-- Kartu 5: Zann -->
+            <div class="admin-card">
+                <img class="admin-avatar" src="https://i.postimg.cc/hPnH7nxP/0aeef35de9367080c6306a6dc5ea4595.jpg" alt="rynn">
+                <div class="admin-name">Zann</div>
+                <div class="admin-role">Owner</div>
+                <div class="admin-subtext">Zann ft HSN</div>
+                
+                <div class="admin-socials">
+                    <a href="https://www.tiktok.com/@shxd.shinn0?_r=1&_t=ZS-97Hxak6C5oY" class="social-icon tiktok"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>2026 © Hoshino Community. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function slide(direction) {
+            const slider = document.getElementById('slider');
+            const scrollAmount = 280; 
+            
+            if(direction === 'left') {
+                slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            } else {
+                slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>
